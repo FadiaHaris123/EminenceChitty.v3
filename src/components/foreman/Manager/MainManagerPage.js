@@ -38,12 +38,17 @@ const ButtonGroup = styled.div`
   display: flex;
 `;
 
-const types = ['Manager Details', 'Add a Manager', 'Excel Upload'];
+
+
 
 const MainManagerPage = () => {
 
+  const types = ['Manager Details', 'Add a Manager', 'Excel Upload'];
   const [active, setActive] = useState(types[0]);
-
+  const routeToManagerDetails = (type) => {
+    setActive(type);
+  }
+  
   return (
     <div>
         <Header>  </Header>
@@ -59,13 +64,13 @@ const MainManagerPage = () => {
             active={active === type} 
             onClick={() => setActive(type)}
           >
-            {type}
+          {type}
           </Tab>
         ))}
       </ButtonGroup>
           <div className={classes.all_tab}>
             {active==='Manager Details' && <ChittyManagers/>}
-            {active === "Add a Manager" && <AddManager/>}
+            {active === "Add a Manager" && <AddManager routeController={routeToManagerDetails}/>}
             {active==='Excel Upload' && <Manager/>}
           </div>
     </div>

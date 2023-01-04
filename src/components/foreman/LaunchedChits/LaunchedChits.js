@@ -10,11 +10,18 @@ const LaunchedChits = () => {
     let token = `Bearer ${JSON.parse(sessionStorage.getItem('jwt'))}`;
 
     const [chits, setChits] = useState([]);
+    const [assignedManager,setAssignedManager] = useState("");
 
+    
     const columns = ([
         {
             name: 'Chit Number',
             selector: 'chitNumber',
+            sortable: true,
+        },
+        {
+            name: 'Assigned Manager',
+            selector: 'assignedManager',
             sortable: true,
         },
         {
@@ -23,6 +30,8 @@ const LaunchedChits = () => {
             sortable: true,
         },
     ]);
+
+    
 
     useEffect(() => {
         const fetchAssignedChits = async () => {

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import classes from './AddManager.module.css';
 import Axios from 'axios';
+import { parseWithOptions } from 'date-fns/fp';
 
-const AddManager = () => {
+
+const AddManager = (props) => {
 
   const url = "http://localhost:8080/addmanager"
   const [autoManagerId, setAutoManagerId] = useState("");
+  
 
   function finalsubmit(e) {
     Axios.post(url, {
@@ -25,6 +28,7 @@ const AddManager = () => {
         alert("Manager added successfully")
         setAutoManagerId(autoManagerId + 1)
         setFormValues(initialValues)
+        props.routeController("Manager Details")
       })
   }
 
